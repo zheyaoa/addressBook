@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../style/homePage.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-striped" id="table">
+                <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>姓名</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="userList">
+
+                </tbody>
+        </table>
+    </div>
+    <script>
+        $.ajax({
+            type: "POST",
+            url: "/api/getUserList",
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            success:function (res) {
+                var list = document.querySelector('#userList');
+                res.forEach(user => {
+                    var html = `
+                        <tr>
+                            <td>${user.userName}</td>
+                            <td>${user.name}</td>
+                            <td>${user.approvalStatus}</td>
+                            <td>
+                                <div class="btn-group" data-id="${user.userName}">
+                                    <button type="button" class="btn btn-default" id="pass">审核通过</button>
+                                    <button type="button" class="btn btn-default" id="disable">禁用</button>
+                                </div>      
+                            </td>    
+                        </tr>
+                    `
+                    list.innerHTML += html;
+                })
+            }
+        })
+        document.querySelector('#userList').addEventListener('click',function(e){
+            var target = e.target;
+            if(target.id){
+                var userName = target.parentNode.getAttribute('data-id');
+                if(target.id == 'pass'){
+                    examineAccount(userName)
+                }else if(target.id == 'disable'){
+                    disabledAccount(userName)
+                }
+            }
+        })
+
+        function examineAccount(userName){
+            var data = {userName};
+            data = JSON.stringify(data);
+            $.ajax({
+                type: "POST",
+                url: "/api/examineAccount",
+                data:data,
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success:function (res) {
+                    if(res.status == 0){
+                        alert("网络错误")
+                    }else if(res.status == 1){
+                        alert("成功")
+                    }else{
+                        alert("未登入")
+                    }
+                }
+            })
+        }
+
+        function disabledAccount(userName){
+            var data = {userName};
+            data = JSON.stringify(data);
+            $.ajax({
+                type: "POST",
+                url: "/api/disabledAccount",
+                data:data,
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success:function (res) {
+                    if(res.status == 0){
+                        alert("网络错误")
+                    }else if(res.status == 1){
+                        alert("成功")
+                    }else{
+                        alert("未登入")
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+@charset "utf-8";
+#header div.user{
+    display:none;
+}
+#header{
+    width:1360px;
+    height:80px;
+    position:relative;
+}
+.container{
+    width:1360px;
+    height:620px;
+    position:relative;
+}
+.bgPic{
+    position:absolute;
+    top:0;
+    left:0;
+}
+.register{
+    width:360px;
+    height:250px;
+    background:rgba(255,255,255,1);
+    position:absolute;
+    top:90px;
+    left:800px;
+}
+.register>.title,.register>.form,.register>.other_login{
+    width:280px;
+    margin:0 auto;
+}
+.register>.title{
+    margin-top:20px;
+    height:30px;
+}
+.register>.title>span{
+    width:40px;
+    height:30px;
+    font-size:18px;
+    color:#333;
+}
+.register>.title>a{
+    display:inline-block;
+    float:right;
+    font-size:14px;
+    color:#111;
+}
+.register>.title>a:hover{
+    color: #0d6eb1;
+    text-decoration:underline;
+}
+.register>.title>a::before{
+    content: "没有账号>>";
+    font-size:12px;
+}
+.register .form>div{
+    height:38px;
+    margin-top:15px;
+    margin-bottom:5px;
+    position:relative;
+}
+.register .form>div>input{
+    width:280px;
+    height:32px;
+    outline:none;
+    border-radius:3px;
+    border:1px solid #ccc;
+    padding-left:10px;
+    box-sizing:border-box;
+}
+.register .form>div>p{
+    display:block;
+    border-radius:3px;
+    font-size:13px;
+    color:#fff;
+    position:absolute;
+    z-index:5;
+    top:-18px;
+    right:1px;
+    background:rgba(0,0,0,0.6);
+    transition:height 0.2s linear;
+    opacity:0;
+}
+.register .form>div>label{
+    position:absolute;
+    left:14px;
+    background:#fff;
+    padding-left:5px;
+    padding-right:5px;
+    transition:all 0.1s linear;
+    cursor: text;
+}
+
+.register .default>p{
+    opacity:0;
+}
+.register .default>input{
+    border-color:#ccc;
+}
+.register .default>label{
+    font-size:13px;
+    top:7px;
+    color:#999;
+    opacity:1;
+}
+
+.register .form>div.submit{
+    height:80px;
+    margin-top:20px;
+}
+.register .form .submit .notice{
+    display:block;
+    height:22px;
+    font-size:12px;
+    color:#666;
+    float:right;
+    margin-bottom:8px;
+}
+.register .form .submit .notice>a{
+    color:#333;
+    text-decoration: underline;
+}
+.register .form .submit .notice>a:hover{
+    color:#279cd2;
+}
+.register .form>div.submit button{
+    display:block;
+    width:280px;
+    line-height:38px;
+    outline:none;
+    border:none;
+    text-align:center;
+    border-radius:3px;
+    background:linear-gradient(to bottom,#0aa1ed,#0088e4);
+    font-size:16px;
+    color:#fff;
+    cursor: pointer;
+}
+
+#footer{
+    width:1360px;
+    height:430px;
+}
+
+.s_hover{
+    background:linear-gradient(to bottom, #2ea8e3, #1086d1) !important;
+}

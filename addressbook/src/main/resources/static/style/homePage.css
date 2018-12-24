@@ -1,0 +1,42 @@
+html,body{
+    height: 100%;
+}
+.container-fiuld{
+    display: flex;
+    height: 100%;
+}
+
+.imgBox{
+    height: 100px;
+}
+.navBox{
+    width: 220px;
+    background: #00263E;
+    height: 100%;
+}
+#navList>li>a{
+	text-align: center;
+	font-size: 18px;
+}
+#friendList > .friend{
+    padding-left: 10px;
+}
+
+.content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.content .header{
+    text-align: center;
+}
+.content .frame{
+    flex: 1;
+}
+.content>.frame iframe{
+    width: 100%;
+    height: 100%;
+}
+.footer{
+    text-align: center;
+}

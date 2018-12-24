@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: addressbook
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: zheyao
+Implementation-Vendor-Id: com.java
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.8
+Main-Class: ${start-class}
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登入</title>
+    <link rel="stylesheet" href="../style/base.css">
+    <link rel="stylesheet" href="../style/login.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="main">
+    <div id="header"></div>
+    <div class="container">
+        <div class="bgPic"><img src="../images/b2_1.jpg" alt=""/></div>
+        <div class="register">
+            <div class="title">
+                <span>注册</span>
+                <a href="register.html">去注册</a>
+            </div>
+            <div class="form">
+                <div class="default">
+                    <input id="userName" type="text" placeholder="输入十位学号"/>
+                </div>
+                <div class="default">
+                    <input id="password" type="password" placeholder="密码长度大于6"/>
+                </div>
+                <div class="submit">
+                    <button class="s_hover" id="register">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelector('#register').onclick = function(){
+        var userName = document.querySelector('#userName').value;
+        var password = document.querySelector('#password').value;
+        var reg = /^\d{10}$/;
+        if(!reg.test(userName)){
+            alert('账号格式错误')
+            return;
+        }
+        if(password.length<6){
+            alert('密码格式错误')
+            return;
+        }
+        var data = {
+            userName,
+            password
+        }
+        data = JSON.stringify(data);
+        $.ajax({
+            type: "POST",
+            url: "/api/register",
+            contentType: 'application/json;charset=utf-8',
+            data:data,
+            dataType: "json",
+            success: function(res){
+                if(res.status == 0){
+                    alert('网络错误')
+                }else if(res.status == 1){
+                    alert('成功')
+                    location.href = 'homePage.html'
+                }else{
+                    alert('账号已注册')
+                }
+            },
+            error:function(e){
+                console.log(e);
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

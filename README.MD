@@ -40,11 +40,11 @@
 >>
 >>   ```json
 >>   data:{
->>       'status':0|1|2|4 //审核未通过｜成功｜账号被禁用|未注册账号
+>>       'status':0|1|2|3|4 //审核未通过｜成功｜账号被禁用|未注册账号｜密码错误
 >>   }
 >>   ```
 >>
->> * api/regesiter
+>> * api/register
 >>
 >>   * web => server
 >>
@@ -59,30 +59,28 @@
 >>
 >>   ```json
 >>   data:{
->>       status:0|1  //账号已被注册｜成功
+>>       status:0|1|2  //网络错误｜成功|账号已被注册
 >>   }
 >>   ```
 >>
->> * api/changeMessage
+>> * api/setUser
 >>
 >>   * web=>server
 >>
 >>   ```json
 >>   data:{
->>       'name':'yyx',
->>       'birth':'1990-03-13',
->>       'pID':'1',
->>       'class':'计科165',
->>       'entranceTime':'2016-09-01',
->>       'leaveTime':'2020-07-01',
->>       'employmentUnit':"ncu",
->>       'location':"jxnc",
+>>       "name":"yyx",
+>>       "birth":"1990-03-13",
+>>       "profession":"计科",
+>>       "class":"计科165",
+>>       "entranceTime":"2016-09-01",
+>>       "leaveTime":"2020-07-01",
+>>       "employmentUnit":"ncu",
+>>       "location":"jxnc",
 >>       "photo":"???",
 >>       "phoneNumber":"15477167971",
 >>       "email":"123456789@qq.com",
->>       "lastTime":"2018-11-14",
->>       "loginTimes":"2",
->>       "descripyion:"大家看法都是科技股份和肯定给合肥科技的身份科技合适的话"
+>>       "description":"大家看法都是科技股份和肯定给合肥科技的身份科技合适的话"
 >>   }
 >>   ```
 >>
@@ -90,7 +88,7 @@
 >>
 >>   ```json
 >>   data:{
->>       status:0|1 //网络错误｜修改成功
+>>       status:0|1|2 //网络错误｜修改成功|未登入
 >>   }
 >>   ```
 >>
@@ -106,18 +104,18 @@
 >>
 >>   ```json
 >>   data:{
->>       [userName:'1234567890',name:'xyz',class:"计科165",""],
+>>       [userName:'1234567890',name:'xyz',class:"计科165","status":0],
 >>       [userName:'1234567890',name:'xyz',class:"计科165"]
 >>   }
 >>   ```
 >>
->> * api/getMessageByUserName
+>> * api/getUserByUserName
 >>
 >>   * web => server
 >>
 >>   ```json
 >>   data:{
->>   	userName:"123456"
+>>   	"userName":"6130116240"
 >>   }
 >>   ```
 >>
@@ -127,7 +125,7 @@
 >>   data:{
 >>       'name':'yyx',
 >>       'birth':'1990-03-13',
->>       'pID':'1',
+>>       'profession':'计科',
 >>       'class':'计科165',
 >>       'entranceTime':'2016-09-01',
 >>       'leaveTime':'2020-07-01',
@@ -136,9 +134,9 @@
 >>       "photo":"???",
 >>       "phoneNumber":"15477167971",
 >>       "email":"123456789@qq.com",
->>       "lastTime":"2018-11-14",
+>>       "lastLogin":"2018-11-14",
 >>       "loginTimes":"2",
->>       "descripyion:"大家看法都是科技股份和肯定给合肥科技的身份科技合适的话"
+>>       "description:"大家看法都是科技股份和肯定给合肥科技的身份科技合适的话"
 >>   }
 >>   ```
 >>
@@ -166,7 +164,7 @@
 >>
 >>   ```json
 >>   data:{
->>       status:0|1  //网络错误｜成功
+>>       status:0|1|2  //网络错误｜成功|未登入
 >>   }
 >>   ```
 >>
@@ -184,28 +182,10 @@
 >>
 >>     ```json
 >>     data:{
->>         status:0|1  //网络错误｜成功
+>>          status:0|1|2  //网络错误｜成功|未登入
 >>     }
 >>     ```
 >>
->> * api/getUserListByPID(可不做)
->>
->>   * web => server
->>
->>     ```json
->>     data:{
->>         pID:1
->>     }
->>     ```
->>
->>   * server => web 
->>
->>     ```
->>     data:{
->>         [userName:'1234567890',name:'xyz',class:"计科165",""],
->>         [userName:'1234567890',name:'xyz',class:"计科165"]
->>     }
->>     ```
 >>
 
 ### 数据库设计
@@ -250,13 +230,13 @@
         <th>出生年月</th>
     </tr>
     <tr>
-    	<th>pID</th>
+    	<th>profession</th>
         <th>Integer</th>
         <th>可空</th>
         <th>信息专业ID</th>
     </tr>
     <tr>
-    	<th>class</th>
+    	<th>className</th>
         <th>String</th>
         <th>可空</th>
         <th>班级</th>
@@ -324,28 +304,5 @@
 </table>	
 
 
-
-
-* profession 表
-
-<table>
-	<tr>
-        <th>属性列</th>
-        <th>数据类型</th>
-        <th>约束条件</th>
-        <th>desc</th>
-    </tr>
-    <tr>
-        <th>pID</th>
-        <th>String</th>
-        <th>主键</th>
-        <th>专业ID</th>
-    </tr>
-    	<tr>
-        <th>profession</th>
-        <th>String</th>
-        <th>约束条件</th>
-        <th>desc</th>
-    </tr>
 
 
